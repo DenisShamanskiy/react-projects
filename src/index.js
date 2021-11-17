@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-//import App from "./components/App";
-import GenerarorPassword from "./components/Generator/Generaror";
+import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GenerarorPassword />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

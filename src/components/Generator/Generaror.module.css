@@ -1,3 +1,5 @@
+@import "../../styles/variables.css";
+
 .container {
   width: 90%;
   min-width: var(--min-width);
@@ -16,10 +18,13 @@
   font-weight: 700;
   font-size: var(--font-big);
   text-transform: uppercase;
+  transition: var(--transition);
+  user-select: none;
 }
 
 .password {
   width: 90%;
+  min-height: 27px;
   margin: 15px;
   padding: 15px;
   border: 1px solid rgb(43, 43, 58);
@@ -29,11 +34,18 @@
   text-align: center;
   overflow-wrap: break-word;
   color: #000;
+  transition: var(--transition);
 }
 
 .message {
+  font-family: "Comfortaa", cursive;
   text-align: center;
+  min-height: 18px;
   color: red;
+  margin: auto;
+  padding: 3px;
+  font-size: var(--font-medium-);
+  user-select: none;
 }
 
 /* === Buttons === */
@@ -51,6 +63,7 @@
   border-radius: var(--btn-border-radius);
   cursor: pointer;
   transition: var(--transition);
+  user-select: none;
 }
 
 .button_copy:disabled,
@@ -59,6 +72,7 @@
   background: none;
   box-shadow: none;
   color: var(--greyDark);
+  cursor: auto;
 }
 
 .button_create {
@@ -95,18 +109,21 @@
 }
 
 .input_label {
+  font-family: "Comfortaa", cursive;
   width: 100%;
   height: 2rem;
+  margin: 10px auto;
   border-radius: 0.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: var(--font-normal-1);
-  margin: 10px auto;
 }
 
 .input_label_span {
+  font-family: "Comfortaa", cursive;
   font-weight: bold;
+  user-select: none;
 }
 
 input[type="range"] {
@@ -165,6 +182,8 @@ input[type="range"]::-webkit-slider-thumb {
   list-style: none;
   margin: 0;
   padding: 1rem;
+
+  transition: var(--transition);
 }
 
 .options_list_item {
@@ -174,6 +193,7 @@ input[type="range"]::-webkit-slider-thumb {
   margin: auto;
   padding: 0.3rem;
   display: flex;
+  transition: var(--transition);
 }
 
 /* CHECKBOX */
@@ -187,7 +207,6 @@ input[type="range"]::-webkit-slider-thumb {
   height: 28px;
   padding: 1rem;
   margin: auto;
-
   cursor: pointer;
   position: relative;
   display: flex;
@@ -196,11 +215,13 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 0.5rem;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
     -0.2rem -0.2rem 0.5rem var(--white);
+  user-select: none;
 }
 
 .checkbox_label:hover {
   color: var(--primary);
 }
+
 .checkbox:checked ~ .checkbox_label {
   box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
     inset -0.2rem -0.2rem 0.5rem var(--white);
@@ -210,18 +231,25 @@ input[type="range"]::-webkit-slider-thumb {
 /* === input unique === */
 
 .input_unique {
-  height: 50px;
+  width: 190px;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .input_unique input {
   display: none;
 }
-
+.switch__1 {
+  width: 6rem;
+}
 .input_unique_label {
   display: flex;
   align-items: center;
-  width: 65px;
-  height: 25px;
+  width: 70px;
+  height: 30px;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
     -0.2rem -0.2rem 0.5rem var(--white);
   background: rgba(255, 255, 255, 0);
@@ -229,13 +257,12 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   border-radius: 1.6rem;
 }
-
 .input_unique_label::after {
   content: "";
   position: absolute;
-  left: 0.5rem;
-  width: 1.6rem;
-  height: 1.6rem;
+  left: 0.4rem;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--greyDark);
   transition: all 0.4s ease;
@@ -254,20 +281,21 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 0;
   transition: all 0.4s ease;
 }
-.input_unique input:checked ~ label::before {
+.input_unique input:checked ~ .input_unique_label::before {
   opacity: 1;
 }
-.input_unique input:checked ~ label::after {
-  left: 57%;
+.input_unique input:checked ~ .input_unique_label::after {
+  left: 61%;
   background: var(--greyLight-1);
 }
 
-/* === END input unique === */
-
-@media screen and (max-width: 1024px) {
-  .container {
-  }
+.input_unique_span {
+  font-family: "Comfortaa", cursive;
+  text-align: center;
+  user-select: none;
 }
+
+/* === END input unique === */
 
 @media screen and (max-width: 768px) {
   .container {
@@ -291,5 +319,14 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: var(--font-min-1);
     width: 140px;
     height: 50px;
+  }
+
+  .options_list_item {
+    font-size: var(--font-min-1);
+    width: 160px;
+  }
+  .checkbox_label {
+    height: 28px;
+    padding: 11px;
   }
 }

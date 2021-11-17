@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import "./Generaror.css";
 import styles from "./Generaror.module.css";
 
-function GenerarorPassword() {
+function Generaror() {
   const options = [
     {
       name: "Нижний регистр",
@@ -35,7 +34,7 @@ function GenerarorPassword() {
   const [disable, setdisable] = useState(true);
   /* Уникальные значения */
   const [unique, setuUnique] = useState(false);
-
+  /* Сообщения */
   const [message, setMessage] = useState("");
 
   /* Обрабочик Checkbox */
@@ -67,34 +66,14 @@ function GenerarorPassword() {
     setuUnique(!unique);
   }
 
-  /*function generation(string) {
-    let passwordGeneration = "";
-    let uni = true;
-    console.log(uni);
-    for (var i = 0; i < lengthPassword; ++i) {
-      passwordGeneration += string.charAt(
-        Math.floor(Math.random() * string.length)
-      );
-    }
-    setPassword(passwordGeneration);
+  function alertMassage(string) {
+    lengthPassword > string.length
+      ? setMessage(`Сделать длиннее ${string.length} символов не получится`)
+      : setMessage("");
   }
 
-  function randoNumbers(string) {
-    const randomNumbers = [];
-    for (let counter = 0; counter < lengthPassword; counter++) {
-      let num;
-      do {
-        num = string.charAt(Math.floor(Math.random() * string.length));
-      } while (randomNumbers.includes(num));
-      randomNumbers.push(num);
-    }
-    setPassword(randomNumbers.join(""));
-  }*/
-
-  /* Функция генерации пароля */
-  const generation = (string) => (unique ? test2(string) : test(string));
-
-  function test(string) {
+  /* Функция генерации простого пароля */
+  function generationSimple(string) {
     let passwordGeneration = [];
     for (var i = 0; i < lengthPassword; ++i) {
       passwordGeneration += string.charAt(
@@ -103,8 +82,8 @@ function GenerarorPassword() {
     }
     setPassword(passwordGeneration);
   }
-
-  function test2(string) {
+  /* Функция генерации пароля с неповторяющимися символами */
+  function generationUnique(string) {
     let passwordGeneration = [];
     for (
       let counter = 0;
@@ -120,35 +99,16 @@ function GenerarorPassword() {
       console.log(passwordGeneration);
     }
     setPassword(passwordGeneration.join(""));
-    msg(string);
+    alertMassage(string);
   }
 
-  /*for (var i = 0; i < lengthPassword; ++i) {
-      if (!unique) {
-        inputLenght.max = string.length;
-        passwordGeneration += string.charAt(
-          Math.floor(Math.random() * string.length)
-        );
-        setPassword(passwordGeneration);
-      } else {
-        let item;
-        do {
-          item = string.charAt(Math.floor(Math.random() * string.length));
-        } while (passwordGeneration.includes(item));
-        passwordGeneration.push(item);
-        setPassword(passwordGeneration.join(""));
-      }
-    }*/
+  /* Функция обработки выбора режима для генерации пароля */
+  const generation = (string) =>
+    unique ? generationUnique(string) : generationSimple(string);
 
   /* Функция копирования пароля в буфер обмена */
   function copyPassword(password) {
     navigator.clipboard.writeText(password);
-  }
-
-  function msg(string) {
-    lengthPassword > string.length
-      ? setMessage(`Сделать длиннее ${string.length} символов не получится`)
-      : setMessage("");
   }
 
   useEffect(() => {
@@ -198,6 +158,7 @@ function GenerarorPassword() {
           onChange={handleUnique}
         ></input>
         <label className={styles.input_unique_label} htmlFor="unique"></label>
+        <span className={styles.input_unique_span}>Символы не повторяются</span>
       </div>
 
       <ul className={styles.options_list}>
@@ -238,4 +199,4 @@ function GenerarorPassword() {
   );
 }
 
-export default GenerarorPassword;
+export default Generaror;
