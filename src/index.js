@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 //import App from "./components/App";
-import GenerarorPassword from "./components/GenerarorPassword";
+import GenerarorPassword from "./components/Generator/Generaror";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
